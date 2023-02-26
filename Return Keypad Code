@@ -1,0 +1,80 @@
+/*
+Return Keypad Code
+Given an integer n, using phone keypad find out all the possible strings that can be made using digits of input n.
+Return empty string for numbers 0 and 1.
+Note : 1. The order of strings are not important.
+2. Input and output has already been managed for you. You just have to populate the output array and return the count of elements populated in the output array.
+Input Format :
+Integer n
+Output Format :
+All possible strings in different lines
+Constraints :
+1 <= n <= 10^6
+Sample Input:
+23
+Sample Output:
+ad
+ae
+af
+bd
+be
+bf
+cd
+ce
+cf
+*/
+
+public class solution {
+
+	public static String findWord(int index){
+		if (index ==2){
+			return "abc";
+		}
+		if (index ==3){
+			return "def";
+		}
+		if (index ==4){
+			return "ghi";
+		}
+		if (index ==5){
+			return "jkl";
+		}
+		if (index ==6){
+			return "mno";
+		}
+		if (index ==7){
+			return "pqrs";
+		}
+		if (index ==8){
+			return "tuv";
+		}
+		if (index ==9){
+			return "wxyz";
+		}
+		return "";
+	}
+
+	// Return a string array that contains all the possible strings
+	public static String[] keypad(int n){
+		// Write your code here
+		if (n == 0){
+			String[] ouput = new String[1];
+			ouput[0]="";
+			return ouput;
+		}
+		String[] smallOutput = keypad(n/10);
+		int index = n%10;
+		String word = findWord(index);
+		String[] output = new String[word.length()*smallOutput.length];
+		int k =0;
+		for (int i = 0; i < smallOutput.length; i++) {
+		for (int j = 0; j < word.length(); j++) {
+		
+			output[k] =  smallOutput[i] + word.charAt(j);
+			k++;
+			}
+		}
+		return output;
+	}
+	
+}
